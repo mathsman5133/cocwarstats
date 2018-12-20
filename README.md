@@ -1,5 +1,5 @@
 # cocwarstats
-To run you need a creds file with the following:
+To run you need a `creds.py` file in main directory with the following:
 
 
 ```
