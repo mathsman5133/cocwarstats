@@ -384,10 +384,11 @@ async def filter(ctx, oppname_wartype, wartype, week, enemy_us, fresh_clean, off
                 c = await db.execute("SELECT playertag FROM playerhr")
             if oppname_wartype == 'playerga':
                 c = await db.execute("SELECT hitid FROM ffsbot")
+            if oppname_wartype == 'playergd':
+                c = await db.execute("SELECT hitid FROM ffsbot")
             if oppname_wartype == 'warid':
                 c = await db.execute("SELECT warid FROM ffsbot")
             unique_clanname = list(set(await c.fetchall()))
-            await c.close()
     else:
         if week == 'all':
             async with aiosqlite.connect(db_path) as db:
