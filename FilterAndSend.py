@@ -1,7 +1,9 @@
 import sqlite3
 import paginator
 import aiosqlite
-db_path = 'C:/py/ffsbot/ffsbot.db'
+import os
+db_path = os.path.join(os.getcwd(),'ffsbot.db')
+
 #conn = sqlite3.connect('ffsbot.db')
 #c = conn.cursor()
 

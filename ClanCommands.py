@@ -2,8 +2,9 @@ import discord
 from discord.ext import commands
 import sqlite3
 from FilterAndSend import filter, league_hr_send, clanhr_ffs_send, names, player_hr_send, playerga_send, war_ga
+import os
 
-conn = sqlite3.connect('ffsbot.db')
+conn = sqlite3.connect(os.path.join(os.getcwd(),'ffsbot.db'))
 c = conn.cursor()
 
 

@@ -13,7 +13,6 @@ from creds import coctoken, ffsbottoken
 import traceback
 import datetime
 from paginator import EmbedPag
-ffsbottoken = ffsbottoken()
 logger = logging.getLogger('discord')
 logger.setLevel(logging.ERROR)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')

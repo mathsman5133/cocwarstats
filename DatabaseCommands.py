@@ -4,8 +4,10 @@ from DownloadWar import set_fresh_clean, add_leagues, add_playerhrs, add_clanhrs
 import traceback
 import sqlite3
 import asyncio
+import os
 
-conn = sqlite3.connect('ffsbot.db')
+conn = sqlite3.connect(os.path.join(os.getcwd(),'ffsbot.db'))
+
 c = conn.cursor()
 class DatabaseCommands:
     def __init__(self, bot):

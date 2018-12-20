@@ -2,11 +2,12 @@ import sqlite3
 from discord import Webhook, RequestsWebhookAdapter
 import discord
 from creds import coctoken, ffswebid, ffstoken, ffsbottoken
+import os
 coctoken = coctoken()
 ffswebid = ffswebid()
 ffsbottoken = ffsbottoken()
 ffstoken = ffstoken()
-conn = sqlite3.connect('ffsbot.db')
+conn = sqlite3.connect(os.path.join(os.getcwd(),'ffsbot.db'))
 c = conn.cursor()
 ffswebhook = Webhook.partial(ffswebid, ffstoken, adapter=RequestsWebhookAdapter())
 

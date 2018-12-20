@@ -19,8 +19,8 @@ coctoken = coctoken()
 ffswebid = ffswebid()
 ffsbottoken = ffsbottoken()
 ffstoken = ffstoken()
-conn = sqlite3.connect('/home/pi/Desktop/ffsbot/ffsbot.db')
-db_path = '/home/pi/Desktop/ffsbot/ffsbot.db'
+conn = sqlite3.connect(os.path.join(os.getcwd(),'ffsbot.db'))
+db_path = os.path.join(os.getcwd(),'ffsbot.db')
 c = conn.cursor()
 ffswebhook = Webhook.partial(ffswebid, ffstoken, adapter=RequestsWebhookAdapter())
 # SCOPES = ['https://www.googleapis.com/auth/drive.file',
