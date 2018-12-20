@@ -401,8 +401,7 @@ async def filter(ctx, oppname_wartype, wartype, week, enemy_us, fresh_clean, off
                     c = await db.execute("SELECT hitcode FROM ffsbot WHERE playertag = :type", {'type':wartype})
                 if oppname_wartype == 'warid':
                     c = await db.execute("SELECT warid FROM ffsbot WHERE WarType = :type", {'type':wartype})
-                unique_clanname = list(set(c.fetchall()))
-                await db.close()
+                unique_clanname = list(set(await c.fetchall()))
         else:
             async with aiosqlite.connect(db_path) as db:
 
@@ -414,26 +413,24 @@ async def filter(ctx, oppname_wartype, wartype, week, enemy_us, fresh_clean, off
                     c = await db.execute("SELECT playertag FROM playerhr WHERE wartype = :wartype", {'wartype': wartype, 'week': week})
                 if oppname_wartype == 'warid':
                     c = await db.execute("SELECT warcode FROM ffsbot WHERE WarType = :type", {'type': wartype})
-                unique_clanname = list(set(c.fetchall()))
-                await db.close()
+                unique_clanname = list(set(await c.fetchall()))
     async with aiosqlite.connect(db_path) as db:
 
         if oppnamefromdb:
             c = await db.execute("SELECT oppname FROM clanhr WHERE oppname = :name", {'name':oppnamefromdb})
-            unique_clanname = list(set(c.fetchall()))
+            unique_clanname = list(set(await c.fetchall()))
         if playertagfromdb:
             c = await db.execute("SELECT playertag FROM playerhr WHERE playertag = :tag", {'tag':playertagfromdb})
-            unique_clanname = list(set(c.fetchall()))
+            unique_clanname = list(set(await c.fetchall()))
         if playertagga:
             c = await db.execute("SELECT AttackerClanMemberMemberTag FROM ffsbot WHERE AttackerClanMemberMemberTag = :tag", {'tag':playertagga})
-            unique_clanname = list(set(c.fetchall()))
+            unique_clanname = list(set(await c.fetchall()))
         if playertaggd:
             c = await db.execute("SELECT DefenderClanMemberMemberTag from ffsbot WHERE DefenderClanMemberMemberTag = :tag", {'tag':playertaggd})
             unique_clanname = list(set(c.fetchall()))
         if warid:
             c = await db.execute("SELECT warid FROM ffsbot WHERE warid = :warid", {'warid':warid})
             unique_clanname = list(set(await c.fetchall()))
-        await db.close()
     # print(playertagga)
     # print(unique_clanname)
     for oppname in unique_clanname:
@@ -1388,4 +1385,3 @@ async def filter(ctx, oppname_wartype, wartype, week, enemy_us, fresh_clean, off
                                     dump = await c.fetchall()
                                     await normal_post_line(ctx, dump, oppname, 'Enemy')
 
-        await db.close()
